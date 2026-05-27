@@ -310,6 +310,7 @@ const prevPageBtn = document.getElementById('prevPageBtn');
 const nextPageBtn = document.getElementById('nextPageBtn');
 const pageIndicator = document.getElementById('pageIndicator');
 const fullscreenExitBtn = document.getElementById('fullscreenExitBtn');
+const fullscreenBtn = document.getElementById('fullscreenBtn');
 const fullscreenHint = document.getElementById('fullscreenHint');
 
 // Bookmark & Search DOM elements
@@ -450,7 +451,7 @@ function turnPage(target) {
     incomingPage.classList.remove('slide-in-left');
   }
 
-  // Wait for transition duration (300ms)
+  // Wait for transition duration (200ms matches CSS)
   setTimeout(() => {
     // Copy incoming state back to active container instantly
     currentPageIndex = targetIndex;
@@ -462,7 +463,7 @@ function turnPage(target) {
 
     updateUI();
     isTransitioning = false;
-  }, 300);
+  }, 200);
 }
 
 // ==========================================================================
@@ -671,8 +672,57 @@ function toggleBookmark() {
 // EVENT LISTENERS Setup
 // ==========================================================================
 function setupEventListeners() {
-  // Click book to toggle fullscreen
-  book.addEventListener('click', toggleFullscreen);
+  // Tap/click on book halves for page navigation (NOT fullscreen toggle)
+  book.addEventListener('click', (e) => {
+    // Ignore clicks on interactive elements
+    if (e.target.closest('.controls-overlay') ||
+        e.target.closest('.fullscreen-exit-btn') ||
+        e.target.closest('.bookmark-ribbon') ||
+        e.target.closest('.search-toast') ||
+        e.target.closest('#searchInput') ||
+        e.target.closest('#searchBtn')) {
+      return;
+    }
+    const rect = book.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    if (clickX < rect.width * 0.35) {
+      turnPage('prev');
+    } else if (clickX > rect.width * 0.65) {
+      turnPage('next');
+    }
+  });
+
+  // Swipe support for mobile
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let isSwiping = false;
+  
+  book.addEventListener('touchstart', (e) => {
+    if (e.target.closest('.page-content') && e.target.closest('.page-content').scrollHeight > e.target.closest('.page-content').clientHeight) {
+      // Let scrollable content scroll naturally
+    }
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    isSwiping = true;
+  }, { passive: true });
+
+  book.addEventListener('touchend', (e) => {
+    if (!isSwiping) return;
+    isSwiping = false;
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+    const diffX = touchEndX - touchStartX;
+    const diffY = touchEndY - touchStartY;
+    
+    // Only register horizontal swipes (not vertical scrolling)
+    if (Math.abs(diffX) > 50 && Math.abs(diffX) > Math.abs(diffY) * 1.5) {
+      if (diffX < 0) {
+        turnPage('next');
+      } else {
+        turnPage('prev');
+      }
+    }
+  }, { passive: true });
 
   // Manual Nav Controls
   prevPageBtn.addEventListener('click', () => turnPage('prev'));
@@ -729,6 +779,14 @@ function setupEventListeners() {
       isFullscreen = false;
     }
   });
+
+  // Enter Fullscreen Button (in controls bar)
+  if (fullscreenBtn) {
+    fullscreenBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleFullscreen(null);
+    });
+  }
 
   // Keyboard navigation
   window.addEventListener('keydown', (e) => {

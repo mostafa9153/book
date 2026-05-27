@@ -2,7 +2,8 @@
 <html lang="bn">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="কোথাও কেউ নেই - হুমায়ূন আহমেদ। একটি সুন্দর ডিজিটাল বই পাঠক।">
   <title>ডিজিটাল বই পাঠক | Digital Book Reader</title>
   
   <!-- PWA Manifest & Theme -->
@@ -27,7 +28,7 @@
       <div class="book-underlay page-underlay-1"></div>
       
       <!-- The main physical book structure -->
-      <div class="book-container" id="book" title="ফুলস্ক্রিন মোড চালু করতে বইটিতে ক্লিক করুন">
+      <div class="book-container" id="book">
         
         <!-- Left Golden Spine/Binding -->
         <div class="book-spine"></div>
@@ -88,6 +89,13 @@
           <span class="arrow">→</span>
         </button>
       </div>
+
+      <!-- Fullscreen Toggle -->
+      <div class="control-group">
+        <button class="control-btn" id="fullscreenBtn" title="ফুলস্ক্রিন মোড">
+          <span class="icon">⛶</span>
+        </button>
+      </div>
     </div>
 
     <!-- Floating fullscreen exit control (shows on hover/interaction in fullscreen) -->
@@ -99,8 +107,8 @@
     <div class="fullscreen-hint" id="fullscreenHint">
       <div class="hint-content">
         <span class="hint-icon">✥</span>
-        <p class="hint-text">সোয়াইপ করে পৃষ্ঠা পরিবর্তন করুন</p>
-        <p class="hint-subtext">সাধারণ মোডে ফিরতে বইয়ের যেকোনো স্থানে ক্লিক করুন</p>
+        <p class="hint-text">সোয়াইপ বা ট্যাপ করে পৃষ্ঠা পরিবর্তন করুন</p>
+        <p class="hint-subtext">বন্ধ করুন বোতামে ক্লিক করে ফিরে যান</p>
       </div>
     </div>
   </div>
