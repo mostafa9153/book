@@ -516,7 +516,7 @@ function showFullscreenHint() {
   fullscreenHint.classList.add('show');
   setTimeout(() => {
     fullscreenHint.classList.remove('show');
-  }, 2500);
+  }, 500);
 }
 
 // Fullscreen state listener to capture Esc or browser menu exit

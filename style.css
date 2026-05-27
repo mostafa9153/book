@@ -802,23 +802,34 @@ body {
     display: contents;
   }
 
-  .controls-overlay {
-    width: 92vw;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .bookmark-controls {
     position: absolute;
+    top: 15px;
     left: 4vw;
+    z-index: 100;
+  }
+
+  .search-controls {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+  }
+
+  .fullscreen-controls {
+    position: absolute;
+    top: 15px;
     right: 4vw;
     z-index: 100;
   }
 
-  .controls-top {
-    top: 15px;
-  }
-
-  .controls-bottom {
+  .nav-controls {
+    position: absolute;
     bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
   }
 
   .control-group {

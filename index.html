@@ -64,43 +64,37 @@
 
     <!-- Controls Container -->
     <div class="controls-container">
-      <!-- Top Controls (search + bookmark) — moves above book on mobile -->
-      <div class="controls-overlay controls-top" id="controlsTop">
-        <!-- Bookmark Controls -->
-        <div class="control-group bookmark-controls">
-          <button class="bookmark-btn" id="goToBookmarkBtn" title="বুকমার্ক করা পৃষ্ঠায় যান">
-            <span class="icon">📍</span>
-          </button>
-        </div>
-
-        <!-- Search & Jump Controls -->
-        <div class="control-group search-controls">
-          <input type="text" id="searchInput" placeholder="পৃষ্ঠা বা শব্দ..." title="শব্দ বা পৃষ্ঠা নম্বর লিখে খুঁজুন">
-          <button class="control-btn" id="searchBtn" title="খুঁজুন / পৃষ্ঠা পরিবর্তন করুন">
-            <span class="icon">🔍</span>
-          </button>
-        </div>
+      <!-- Bookmark Controls -->
+      <div class="controls-overlay control-group bookmark-controls" id="bookmarkGroup">
+        <button class="bookmark-btn" id="goToBookmarkBtn" title="বুকমার্ক করা পৃষ্ঠায় যান">
+          <span class="icon">📍</span>
+        </button>
       </div>
 
-      <!-- Bottom Controls (nav + fullscreen) — stays below book -->
-      <div class="controls-overlay controls-bottom" id="controlsBottom">
-        <!-- Navigation Controls -->
-        <div class="control-group nav-controls">
-          <button class="control-btn nav-btn" id="prevPageBtn" title="Previous Page (পূর্ববর্তী পৃষ্ঠা)">
-            <span class="arrow">←</span>
-          </button>
-          <span class="page-indicator" id="pageIndicator">১ / ১০</span>
-          <button class="control-btn nav-btn" id="nextPageBtn" title="Next Page (পরবর্তী পৃষ্ঠা)">
-            <span class="arrow">→</span>
-          </button>
-        </div>
+      <!-- Search & Jump Controls -->
+      <div class="controls-overlay control-group search-controls" id="searchGroup">
+        <input type="text" id="searchInput" placeholder="পৃষ্ঠা বা শব্দ..." title="শব্দ বা পৃষ্ঠা নম্বর লিখে খুঁজুন">
+        <button class="control-btn" id="searchBtn" title="খুঁজুন / পৃষ্ঠা পরিবর্তন করুন">
+          <span class="icon">🔍</span>
+        </button>
+      </div>
 
-        <!-- Fullscreen Toggle -->
-        <div class="control-group">
-          <button class="control-btn" id="fullscreenBtn" title="ফুলস্ক্রিন মোড">
-            <span class="icon">⛶</span>
-          </button>
-        </div>
+      <!-- Navigation Controls -->
+      <div class="controls-overlay control-group nav-controls" id="navGroup">
+        <button class="control-btn nav-btn" id="prevPageBtn" title="Previous Page (পূর্ববর্তী পৃষ্ঠা)">
+          <span class="arrow">←</span>
+        </button>
+        <span class="page-indicator" id="pageIndicator">১ / ১০</span>
+        <button class="control-btn nav-btn" id="nextPageBtn" title="Next Page (পরবর্তী পৃষ্ঠা)">
+          <span class="arrow">→</span>
+        </button>
+      </div>
+
+      <!-- Fullscreen Toggle -->
+      <div class="controls-overlay control-group fullscreen-controls" id="fullscreenGroup">
+        <button class="control-btn" id="fullscreenBtn" title="ফুলস্ক্রিন মোড">
+          <span class="icon">⛶</span>
+        </button>
       </div>
     </div>
 
@@ -112,9 +106,8 @@
     <!-- Fullscreen hint overlay (briefly shown on entry) -->
     <div class="fullscreen-hint" id="fullscreenHint">
       <div class="hint-content">
-        <span class="hint-icon">✥</span>
-        <p class="hint-text">সোয়াইপ বা ট্যাপ করে পৃষ্ঠা পরিবর্তন করুন</p>
-        <p class="hint-subtext">বন্ধ করুন বোতামে ক্লিক করে ফিরে যান</p>
+        <span class="hint-icon">↔</span>
+        <p class="hint-text">সোয়াইপ করুন</p>
       </div>
     </div>
   </div>
