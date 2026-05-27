@@ -64,37 +64,37 @@
 
     <!-- Controls below the book (hidden in fullscreen) -->
     <div class="controls-overlay" id="controls">
-      <!-- Bookmark Controls -->
-      <div class="control-group bookmark-controls">
-        <button class="bookmark-btn" id="goToBookmarkBtn" title="বুকমার্ক করা পৃষ্ঠায় যান">
-          <span class="icon">📍</span>
-        </button>
+      <!-- Row 1: Search & Bookmark -->
+      <div class="controls-row">
+        <div class="control-group search-controls">
+          <input type="text" id="searchInput" placeholder="পৃষ্ঠা বা শব্দ..." title="শব্দ বা পৃষ্ঠা নম্বর লিখে খুঁজুন">
+          <button class="control-btn" id="searchBtn" title="খুঁজুন / পৃষ্ঠা পরিবর্তন করুন">
+            <span class="icon">🔍</span>
+          </button>
+        </div>
+        <div class="control-group bookmark-controls">
+          <button class="bookmark-btn" id="goToBookmarkBtn" title="বুকমার্ক করা পৃষ্ঠায় যান">
+            <span class="icon">📍</span>
+          </button>
+        </div>
       </div>
 
-      <!-- Search & Jump Controls -->
-      <div class="control-group search-controls">
-        <input type="text" id="searchInput" placeholder="পৃষ্ঠা বা শব্দ..." title="শব্দ বা পৃষ্ঠা নম্বর লিখে খুঁজুন">
-        <button class="control-btn" id="searchBtn" title="খুঁজুন / পৃষ্ঠা পরিবর্তন করুন">
-          <span class="icon">🔍</span>
-        </button>
-      </div>
-
-      <!-- Navigation Controls -->
-      <div class="control-group nav-controls">
-        <button class="control-btn nav-btn" id="prevPageBtn" title="Previous Page (পূর্ববর্তী পৃষ্ঠা)">
-          <span class="arrow">←</span>
-        </button>
-        <span class="page-indicator" id="pageIndicator">১ / ১০</span>
-        <button class="control-btn nav-btn" id="nextPageBtn" title="Next Page (পরবর্তী পৃষ্ঠা)">
-          <span class="arrow">→</span>
-        </button>
-      </div>
-
-      <!-- Fullscreen Toggle -->
-      <div class="control-group">
-        <button class="control-btn" id="fullscreenBtn" title="ফুলস্ক্রিন মোড">
-          <span class="icon">⛶</span>
-        </button>
+      <!-- Row 2: Fullscreen & Page Navigation -->
+      <div class="controls-row">
+        <div class="control-group">
+          <button class="control-btn" id="fullscreenBtn" title="ফুলস্ক্রিন মোড">
+            <span class="icon">⛶</span>
+          </button>
+        </div>
+        <div class="control-group nav-controls">
+          <button class="control-btn nav-btn" id="prevPageBtn" title="Previous Page (পূর্ববর্তী পৃষ্ঠা)">
+            <span class="arrow">←</span>
+          </button>
+          <span class="page-indicator" id="pageIndicator">১ / ১০</span>
+          <button class="control-btn nav-btn" id="nextPageBtn" title="Next Page (পরবর্তী পৃষ্ঠা)">
+            <span class="arrow">→</span>
+          </button>
+        </div>
       </div>
     </div>
 

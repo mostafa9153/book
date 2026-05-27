@@ -420,12 +420,21 @@ body {
    ========================================================================== */
 .controls-overlay {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   width: var(--book-width);
-  margin-top: 25px;
+  margin-top: 20px;
+  gap: 8px;
   z-index: 10;
   transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.controls-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
 }
 
 .control-group {
@@ -791,18 +800,20 @@ body {
   }
 
   .controls-overlay {
-    width: 92vw;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 10px;
+    width: 94vw;
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .controls-row {
+    gap: 6px;
   }
 
   .control-group {
     justify-content: center;
     flex-wrap: nowrap;
     gap: 4px;
-    padding: 5px 10px;
+    padding: 5px 8px;
   }
 
   .bookmark-ribbon {
