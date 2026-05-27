@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ডিজিটাল বই পাঠক | Digital Book Reader</title>
+  
+  <!-- PWA Manifest & Theme -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#dfc382">
+
+  <!-- Google Fonts for Bengali Serif and Modern Sans Serif for controls -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="desk-container" id="desk">
+    <!-- Search Toast Notification -->
+    <div class="search-toast" id="searchToast"></div>
+
+    <div class="book-wrapper">
+      <!-- 3D stacked page effect below the main book -->
+      <div class="book-underlay page-underlay-3"></div>
+      <div class="book-underlay page-underlay-2"></div>
+      <div class="book-underlay page-underlay-1"></div>
+      
+      <!-- The main physical book structure -->
+      <div class="book-container" id="book" title="ফুলস্ক্রিন মোড চালু করতে বইটিতে ক্লিক করুন">
+        
+        <!-- Left Golden Spine/Binding -->
+        <div class="book-spine"></div>
+        
+        <!-- Bookmark Ribbon -->
+        <div class="bookmark-ribbon" id="bookmarkRibbon" title="এই পৃষ্ঠাটি বুকমার্ক করুন"></div>
+
+        <!-- Viewport for pages -->
+        <div class="pages-viewport">
+          <!-- Active Page -->
+          <div class="page active-page" id="currentPage">
+            <div class="page-inner">
+              <div class="page-content" id="currentContent">
+                <!-- Content loaded dynamically from JS -->
+              </div>
+              <div class="page-footer" id="currentFooter"></div>
+            </div>
+          </div>
+          
+          <!-- Incoming Page for slide turn animations -->
+          <div class="page incoming-page" id="incomingPage">
+            <div class="page-inner">
+              <div class="page-content" id="incomingContent">
+                <!-- Incoming content loaded dynamically -->
+              </div>
+              <div class="page-footer" id="incomingFooter"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Controls below the book (hidden in fullscreen) -->
+    <div class="controls-overlay" id="controls">
+      <!-- Bookmark Controls -->
+      <div class="control-group bookmark-controls">
+        <button class="bookmark-btn" id="goToBookmarkBtn" title="বুকমার্ক করা পৃষ্ঠায় যান">
+          <span class="icon">📍</span>
+        </button>
+      </div>
+
+      <!-- Search & Jump Controls -->
+      <div class="control-group search-controls">
+        <input type="text" id="searchInput" placeholder="পৃষ্ঠা বা শব্দ..." title="শব্দ বা পৃষ্ঠা নম্বর লিখে খুঁজুন">
+        <button class="control-btn" id="searchBtn" title="খুঁজুন / পৃষ্ঠা পরিবর্তন করুন">
+          <span class="icon">🔍</span>
+        </button>
+      </div>
+
+      <!-- Navigation Controls -->
+      <div class="control-group nav-controls">
+        <button class="control-btn nav-btn" id="prevPageBtn" title="Previous Page (পূর্ববর্তী পৃষ্ঠা)">
+          <span class="arrow">←</span>
+        </button>
+        <span class="page-indicator" id="pageIndicator">১ / ১০</span>
+        <button class="control-btn nav-btn" id="nextPageBtn" title="Next Page (পরবর্তী পৃষ্ঠা)">
+          <span class="arrow">→</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Floating fullscreen exit control (shows on hover/interaction in fullscreen) -->
+    <button class="fullscreen-exit-btn" id="fullscreenExitBtn" title="Exit Fullscreen">
+      ✕ বন্ধ করুন
+    </button>
+
+    <!-- Fullscreen hint overlay (briefly shown on entry) -->
+    <div class="fullscreen-hint" id="fullscreenHint">
+      <div class="hint-content">
+        <span class="hint-icon">✥</span>
+        <p class="hint-text">সোয়াইপ করে পৃষ্ঠা পরিবর্তন করুন</p>
+        <p class="hint-subtext">সাধারণ মোডে ফিরতে বইয়ের যেকোনো স্থানে ক্লিক করুন</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').then(registration => {
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, err => {
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      });
+    }
+  </script>
+</body>
+</html>
