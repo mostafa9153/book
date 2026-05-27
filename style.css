@@ -418,23 +418,21 @@ body {
 /* ==========================================================================
    UI CONTROLS OVERLAY (BOTTOM)
    ========================================================================== */
-.controls-overlay {
+.controls-container {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   width: var(--book-width);
-  margin-top: 20px;
-  gap: 8px;
+  margin-top: 25px;
   z-index: 10;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-.controls-row {
+.controls-overlay {
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 100%;
   gap: 8px;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .control-group {
@@ -659,6 +657,7 @@ body {
   display: none;
 }
 
+.desk-container.fullscreen-active .controls-container,
 .desk-container.fullscreen-active .controls-overlay {
   opacity: 0;
   visibility: hidden;
@@ -799,21 +798,34 @@ body {
     line-height: 1.85;
   }
 
-  .controls-overlay {
-    width: 94vw;
-    gap: 6px;
-    margin-top: 8px;
+  .controls-container {
+    display: contents;
   }
 
-  .controls-row {
-    gap: 6px;
+  .controls-overlay {
+    width: 92vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    left: 4vw;
+    right: 4vw;
+    z-index: 100;
+  }
+
+  .controls-top {
+    top: 15px;
+  }
+
+  .controls-bottom {
+    bottom: 15px;
   }
 
   .control-group {
     justify-content: center;
     flex-wrap: nowrap;
     gap: 4px;
-    padding: 5px 8px;
+    padding: 5px 10px;
   }
 
   .bookmark-ribbon {
